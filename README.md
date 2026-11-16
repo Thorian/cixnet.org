@@ -46,3 +46,9 @@ Official documentation: https://developers.cloudflare.com/pages/get-started/git-
 ## Verification
 
 18 static HTML pages. check.mjs validates local page, asset and section-anchor references. Desktop directory and phone homepage/enquiry layouts visually reviewed. No server data or live network status is exposed.
+
+## Search and sharing
+
+seo.mjs defines the public origin and the page-specific titles and descriptions. The build emits canonical links, Open Graph and Twitter card metadata, sitemap.xml and robots.txt. The 404 page is marked noindex. Production images use prebuilt WebP files; social previews use a 1200×630 JPEG. optimize-images.py recreates the derived images using Pillow when source artwork changes (Pillow is not needed for a website build).
+
+The canonical site is https://cixnet.org/. Cloudflare's single redirect rule sends www.cixnet.org to the apex with a 301, preserving paths and query strings. Google Search Console remains under the owner's control; submit https://cixnet.org/sitemap.xml there.
