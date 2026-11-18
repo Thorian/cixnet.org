@@ -3,7 +3,7 @@ import {mkdir,readFile,writeFile,copyFile} from 'node:fs/promises';
 const pages=JSON.parse(await readFile('src/content/pages.json','utf8'));
 const home=await readFile('src/content/home.html','utf8');
 await mkdir('dist/assets',{recursive:true});
-const assets=['logo-optimized.png','logo-filter.svg','favicon.svg','nova-scotia-coast-v1.webp','cooler-node-concept-v1.webp','lora-glovebox-v1.webp','social-coast.jpg'];
+const assets=['opening-community-cover-v1.webp','logo-optimized.png','logo-filter.svg','favicon.svg','nova-scotia-coast-v1.webp','cooler-node-concept-v1.webp','lora-glovebox-v1.webp','social-coast.jpg'];
 for(const asset of assets)await copyFile('src/assets/'+asset,'dist/assets/'+asset);
 await copyFile('src/style.css','dist/assets/style.css');
 const nav=[['/network/','Network'],['/projects/','Projects'],['/hardware/','Hardware'],['/field-notes/','Build reports'],['/assistance/','Work with us']];

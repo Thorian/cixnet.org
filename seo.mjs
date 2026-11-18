@@ -1,5 +1,6 @@
 export const origin='https://cixnet.org';
 export const metadata={
+'/field-notes/opening-up-to-the-community/':['Opening up to the community — ciXnet','ciXnet is publishing its tools, client software and libraries on GitHub, with a gradual rollout through March 2027 and an invitation for feedback.'],
 '/':['ciXnet — Reticulum networks, software & engineering','Reticulum-based communications infrastructure, Wi-Fi HaLow backbone links, LoRa access nodes, software projects and configuration guides from ciXnet.'],
 '/network/':['The ciXnet network','How ciXnet uses Reticulum, Wi-Fi HaLow and LoRa, and how everyday use shaped our client software, publishing tools and backbone links.'],
 '/network/reticulum/':['What is Reticulum?','An introduction to Reticulum networking: radio and IP connections, destination addresses, encryption, applications and how ciXnet uses them.'],
@@ -24,5 +25,8 @@ const esc=value=>String(value).replaceAll('&','&amp;').replaceAll('"','&quot;').
 export function seoHead(path){
  if(!metadata[path])throw Error('Missing metadata for '+path);
  const [title,description]=metadata[path], url=origin+path;
- return `<title>${esc(title)}</title><meta name="description" content="${esc(description)}">${path==='/404.html'?'<meta name="robots" content="noindex,follow">':`<link rel="canonical" href="${url}">`}<meta property="og:type" content="website"><meta property="og:site_name" content="ciXnet"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${origin}/assets/social-coast.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Coastal Nova Scotia with an antenna overlooking the ocean"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(description)}"><meta name="twitter:image" content="${origin}/assets/social-coast.jpg">`;
+ const community=path==='/field-notes/opening-up-to-the-community/';
+ const shareImage=community?'opening-community-cover-v1.webp':'social-coast.jpg';
+ const shareAlt=community?'Code editor and Python project files':'Coastal Nova Scotia with an antenna overlooking the ocean';
+ return `<title>${esc(title)}</title><meta name="description" content="${esc(description)}">${path==='/404.html'?'<meta name="robots" content="noindex,follow">':`<link rel="canonical" href="${url}">`}<meta property="og:type" content="website"><meta property="og:site_name" content="ciXnet"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${origin}/assets/${shareImage}"><meta property="og:image:width" content="${community?1672:1200}"><meta property="og:image:height" content="${community?941:630}"><meta property="og:image:alt" content="${shareAlt}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(description)}"><meta name="twitter:image" content="${origin}/assets/${shareImage}">`;
 }
